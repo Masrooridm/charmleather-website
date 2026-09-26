@@ -1,0 +1,127 @@
+        body {
+            background-color: #0B0B0D;
+            color: #E2E8F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0B9 0%, #D4AF37 50%, #996515 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+            color: #000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+        }
+
+        .gold-btn:hover {
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 100%);
+            box-shadow: 0 6px 28px rgba(212, 175, 55, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .glass-card {
+            background: rgba(22, 22, 26, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .glass-card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card-hover:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+
+        /* 3D Belt Simulator Styles */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        
+        .belt-flip-container {
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-style: preserve-3d;
+        }
+
+        .belt-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .belt-face {
+            backface-visibility: hidden;
+        }
+
+        .belt-back {
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0B0D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #25252D;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+/* =========================================================================
+   3D ANIMATION LAYER
+   - .tilt-3d   : card leans toward the cursor (mouse) — hero card, product
+                  cards, review cards, authenticity cards.
+   - .reveal-3d : card rotates in from a slight angle as it scrolls into
+                  view (added by js/script.js via IntersectionObserver).
+   Both are skipped automatically for people with "reduce motion" turned on
+   (see the prefers-reduced-motion block above).
+   ========================================================================= */
+.tilt-3d {
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+.tilt-3d:hover {
+    box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.25);
+}
+
+.reveal-3d {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(-10deg) translateY(36px) scale(0.96);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-3d.in-view {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+}
+
+/* stagger children of a 3D-revealed grid so cards don't all pop at once */
+.reveal-3d:nth-child(2) { transition-delay: 0.08s; }
+.reveal-3d:nth-child(3) { transition-delay: 0.16s; }
+
+/* gives depth to the page as a whole while scrolling */
+.perspective-scene {
+    perspective: 1400px;
+}

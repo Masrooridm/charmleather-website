@@ -1,0 +1,573 @@
+<!--
+  ============================================================================
+  CharmLeather — apni product photos khud add karne ka tareeqa
+  ============================================================================
+  1. "images" folder (isi ke sath maujood hai) mein apni photo daal do.
+  2. js/script.js file kholo, sabse upar "PRODUCTS" list mein jis product
+     ki photo lagani hai, uski "photo: null" line ko
+     photo: "images/reversible-belt.jpg" se badal do.
+  Poori detail README.md mein hai jo iske sath share ki gayi hai.
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CharmLeather | Premium Pakistani Genuine Leather Belts & Wallets</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="js/tailwind-config.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-black">
+
+    <div class="bg-gradient-to-r from-brand-goldDark via-brand-gold to-brand-goldDark text-black text-xs md:text-sm font-bold py-2 text-center px-4 tracking-wide shadow-md flex items-center justify-center gap-2">
+        <i class="fa-solid fa-truck-fast animate-bounce"></i>
+        <span>SPECIAL RAMADAN SALE: FREE SHIPPING ALL OVER PAKISTAN + CASH ON DELIVERY!</span>
+        <span class="hidden md:inline-block bg-black text-brand-gold text-[10px] uppercase px-2 py-0.5 rounded-full ml-2">Limited Stock</span>
+    </div>
+
+    <nav class="sticky top-0 z-50 glass-card border-b border-brand-gold/20 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full border-2 border-brand-gold flex items-center justify-center bg-black/50 group-hover:scale-105 transition-transform">
+                        <span class="font-serif text-brand-gold font-bold text-xl">C</span>
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl font-bold tracking-widest text-white group-hover:text-brand-gold transition-colors">CHARM<span class="text-brand-gold">LEATHER</span></span>
+                        <p class="text-[9px] text-gray-400 tracking-widest uppercase -mt-1">Crafted In Pakistan</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Links -->
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#simulator" class="text-gray-300 hover:text-brand-gold transition-colors">3D Interactive Belt</a>
+                    <a href="#products" class="text-gray-300 hover:text-brand-gold transition-colors">Products</a>
+                    <a href="#authenticity" class="text-gray-300 hover:text-brand-gold transition-colors">Leather Guarantee</a>
+                    <a href="#reviews" class="text-gray-300 hover:text-brand-gold transition-colors">Reviews</a>
+                    <a href="#order" class="gold-btn px-6 py-2.5 rounded-full font-bold flex items-center gap-2 text-xs uppercase tracking-wider">
+                        <i class="fa-solid fa-bag-shopping"></i> Order Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" class="text-gray-300 hover:text-brand-gold focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileDrawer" class="hidden md:hidden glass-card border-t border-brand-gold/10 px-4 pt-4 pb-6 space-y-3">
+            <a href="#simulator" class="mobile-link block py-2 text-gray-200 hover:text-brand-gold border-b border-gray-800">3D Interactive Belt</a>
+            <a href="#products" class="mobile-link block py-2 text-gray-200 hover:text-brand-gold border-b border-gray-800">Products Collection</a>
+            <a href="#authenticity" class="mobile-link block py-2 text-gray-200 hover:text-brand-gold border-b border-gray-800">100% Real Leather Test</a>
+            <a href="#reviews" class="mobile-link block py-2 text-gray-200 hover:text-brand-gold border-b border-gray-800">Customer Testimonials</a>
+            <a href="#order" class="mobile-link gold-btn w-full text-center py-3 rounded-lg font-bold block mt-4">Order Cash on Delivery</a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[90vh] flex items-center justify-center pt-8 pb-16 px-4 overflow-hidden">
+        <!-- Ambient Glowing Background Circles -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-72 h-72 bg-amber-700/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <!-- Left Hero Content -->
+            <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card border border-brand-gold/30 text-brand-gold text-xs font-semibold uppercase tracking-wider animate-pulse-slow">
+                    <i class="fa-solid fa-crown text-xs"></i> Pakistan's Premium Leather Brand
+                </div>
+                
+                <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.15]">
+                    Elegance <span class="gold-gradient-text">Twisted</span> To Perfection.
+                </h1>
+
+                <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Stop wasting money on cheap, cracking belts. Discover **CharmLeather's 100% Top-Grain Reversible & Auto-Lock Belts** engineered with heavy-duty solid gold twist hardware for a lifetime of luxury.
+                </p>
+
+                <!-- Value Props Pills -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 max-w-lg mx-auto lg:mx-0 text-xs">
+                    <div class="glass-card p-3 rounded-xl flex items-center gap-2.5">
+                        <i class="fa-solid fa-rotate text-brand-gold text-base"></i>
+                        <span class="text-gray-200 font-medium">1 Belt = 2 Colors</span>
+                    </div>
+                    <div class="glass-card p-3 rounded-xl flex items-center gap-2.5">
+                        <i class="fa-solid fa-shield-halved text-brand-gold text-base"></i>
+                        <span class="text-gray-200 font-medium">Zero Cracks Guarantee</span>
+                    </div>
+                    <div class="glass-card p-3 rounded-xl flex items-center gap-2.5 col-span-2 sm:col-span-1">
+                        <i class="fa-solid fa-truck-ramp-box text-brand-gold text-base"></i>
+                        <span class="text-gray-200 font-medium">Pay COD at Doorstep</span>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#order" class="gold-btn w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-bolt text-base"></i> Order Now - <span class="js-hero-price">Rs. 2,499</span>
+                    </a>
+                    <a href="#simulator" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card border border-brand-gold/30 hover:border-brand-gold text-white font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-solid fa-arrows-spin text-brand-gold"></i> Try 3D Simulator
+                    </a>
+                </div>
+
+                <!-- Social Proof Badges.
+                     The rating/order-count line below is commented out on purpose — it was a made-up
+                     number in the reference file. Once you have real reviews or a real order count,
+                     uncomment the line and put your real figure in. Fake numbers can get a business
+                     in trouble with consumer-protection rules, so don't ship a guessed figure. -->
+                <div class="pt-6 border-t border-gray-800/80 flex items-center justify-center lg:justify-start gap-6 text-xs text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-brand-gold text-base"></i>
+                        <span class="text-gray-300 font-medium">Hand-inspected before every dispatch — Cash on Delivery, open-parcel where available</span>
+                    </div>
+                    <!-- <span class="text-gray-300 font-medium"><strong class="text-white">4.9/5</strong> Star Rating (1,420+ Orders)</span> -->
+                </div>
+            </div>
+
+            <!-- Right Visual / Interactive Quick Preview -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="w-full max-w-md glass-card rounded-3xl p-6 relative shadow-2xl border border-brand-gold/30 animate-float tilt-3d">
+                    <div class="absolute -top-3 -right-3 bg-gradient-to-r from-red-600 to-amber-600 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
+                        Best Seller
+                    </div>
+                    
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-black/60 relative flex items-center justify-center border border-gray-800 group">
+                        <!-- Product SVG Illustration for High Sharpness & Responsiveness -->
+                        <img src="images/reversible.jpeg" alt="Dual-Tone Reversible Belt" class="w-full h-full object-cover"> 
+                            <!-- Background Glow -->
+                            <circle cx="200" cy="200" r="150" fill="url(#heroGlow)" opacity="0.3"/>
+                            <!-- Belt Leather Strap -->
+                            <path id="svgStrap" d="M 60,200 L 320,200" stroke="#1A1A1A" stroke-width="48" stroke-linecap="round"/>
+                            <path id="svgStrapStitch" d="M 60,180 L 320,180 M 60,220 L 320,220" stroke="#D4AF37" stroke-width="2" stroke-dasharray="6 4" opacity="0.8"/>
+                            <!-- Gold Buckle Mechanism -->
+                            <rect id="svgBuckle" x="180" y="150" width="80" height="100" rx="12" fill="url(#goldGrad)" stroke="#FFF" stroke-width="1.5" class="drop-shadow-lg"/>
+                            <rect x="195" y="165" width="50" height="70" rx="6" fill="#0B0B0D"/>
+                            <!-- Pin -->
+                            <line x1="210" y1="200" x2="250" y2="200" stroke="url(#goldGrad)" stroke-width="8" stroke-linecap="round"/>
+                            <!-- Gradients -->
+                            <defs>
+                                <radialGradient id="heroGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 200) rotate(90) scale(150)">
+                                    <stop stop-color="#D4AF37"/>
+                                    <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
+                                </radialGradient>
+                                <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#FFF0B9"/>
+                                    <stop offset="50%" stop-color="#D4AF37"/>
+                                    <stop offset="100%" stop-color="#8A640F"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+
+                        <div class="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md rounded-xl p-3 border border-brand-gold/20 flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-bold text-white">Dual-Tone Reversible Belt</p>
+                                <p class="text-[10px] text-brand-gold">Black Side & Rich Tan Side</p>
+                            </div>
+                            <span class="text-sm font-bold text-white js-hero-price">Rs. 2,499</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+                        <span><i class="fa-solid fa-check text-green-400 mr-1"></i> In Stock (Charm Leather Crafted)</span>
+                        <span><i class="fa-solid fa-truck text-brand-gold mr-1"></i> Ships in 24 Hours</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulator" class="py-20 px-4 bg-gradient-to-b from-brand-bg via-brand-surface to-brand-bg relative border-y border-brand-gold/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full glass-card border border-brand-gold/30">
+                    Interactive Feature
+                </span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-3">
+                    Twist & Flip <span class="gold-gradient-text">180° Simulator</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base mt-2">
+                    Experience how our solid gold hardware mechanism flips from **Formal Sleek Black** to **Casual Rich Tan** with a single twist.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center glass-card p-6 sm:p-10 rounded-3xl border border-brand-gold/20">
+                <!-- Interactive Belt Canvas Area -->
+                <div class="lg:col-span-7 flex flex-col items-center justify-center min-h-[320px] bg-black/70 rounded-2xl p-6 relative overflow-hidden border border-gray-800 perspective-1000">
+                    
+                    <div id="belt3dCard" class="belt-flip-container w-full max-w-md aspect-[16/9] relative flex items-center justify-center cursor-pointer">
+                        <!-- FRONT SIDE: BLACK BELT -->
+                        <div class="belt-face absolute inset-0 rounded-2xl bg-gradient-to-r from-neutral-900 via-zinc-800 to-neutral-950 border-2 border-zinc-700 p-6 flex items-center justify-between shadow-2xl">
+                             <img src="images/belt-black-side.jpg" alt="Black side" class="w-full h-full object-cover rounded-2xl">
+                            <div class="w-16 h-20 rounded-lg border-4 border-amber-400 bg-gradient-to-tr from-amber-600 via-yellow-200 to-amber-500 shadow-lg flex items-center justify-center relative">
+                                <div class="w-8 h-12 bg-black/90 rounded border border-amber-300"></div>
+                                <div class="absolute w-6 h-1.5 bg-amber-200 rounded-full left-1/2 -translate-x-1/2 shadow"></div>
+                            </div>
+                            <!-- Leather Pattern -->
+                            <div class="flex-1 mx-4 h-12 bg-zinc-900 rounded-lg border-y border-zinc-700 flex items-center px-4 justify-between relative overflow-hidden">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:8px_8px]"></div>
+                                <span class="text-[10px] font-serif tracking-widest text-brand-gold font-bold z-10">CHARMLEATHER • BLACK SIDE</span>
+                                <div class="flex space-x-2 z-10">
+                                    <div class="w-2 h-2 rounded-full bg-zinc-950 border border-zinc-700"></div>
+                                    <div class="w-2 h-2 rounded-full bg-zinc-950 border border-zinc-700"></div>
+                                    <div class="w-2 h-2 rounded-full bg-zinc-950 border border-zinc-700"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BACK SIDE: TAN BELT -->
+                        <div class="belt-back absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-900 via-amber-800 to-yellow-900 border-2 border-amber-600 p-6 flex items-center justify-between shadow-2xl">
+                            <img src="images/belt-tan-side.jpg" alt="Tan side" class="w-full h-full object-cover rounded-2xl">
+                            <div class="w-16 h-20 rounded-lg border-4 border-amber-300 bg-gradient-to-tr from-yellow-200 via-amber-400 to-amber-600 shadow-lg flex items-center justify-center relative">
+                                <div class="w-8 h-12 bg-amber-950 rounded border border-amber-200"></div>
+                                <div class="absolute w-6 h-1.5 bg-amber-100 rounded-full left-1/2 -translate-x-1/2 shadow"></div>
+                            </div>
+                            <!-- Tan Texture -->
+                            <div class="flex-1 mx-4 h-12 bg-amber-950 rounded-lg border-y border-amber-700 flex items-center px-4 justify-between relative overflow-hidden">
+                                <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#fbbf24_1px,transparent_1px)] [background-size:6px_6px]"></div>
+                                <span class="text-[10px] font-serif tracking-widest text-amber-300 font-bold z-10">CHARMLEATHER • RICH TAN</span>
+                                <div class="flex space-x-2 z-10">
+                                    <div class="w-2 h-2 rounded-full bg-amber-900 border border-amber-600"></div>
+                                    <div class="w-2 h-2 rounded-full bg-amber-900 border border-amber-600"></div>
+                                    <div class="w-2 h-2 rounded-full bg-amber-900 border border-amber-600"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-gray-400 mt-6 flex items-center gap-2">
+                        <i class="fa-solid fa-hand-pointer text-brand-gold animate-bounce"></i> Click button below or click the belt to test 180° twist
+                    </p>
+                </div>
+
+                <!-- Controls & Info -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div id="simStatusBadge" class="inline-block px-3 py-1 rounded-md bg-black text-brand-gold text-xs font-bold border border-brand-gold/30">
+                        CURRENT MODE: FORMAL SLEEK BLACK
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-white">One Belt. Two Infinite Looks.</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Never carry two different belts again. Gently pull the buckle, twist 180 degrees, and lock into place in less than 2 seconds. Crafted from dual-sided top-grain Pakistani cowhide.
+                    </p>
+
+                    <div class="space-y-3 border-t border-gray-800 pt-4 text-xs text-gray-300">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-brand-gold text-sm"></i>
+                            <span><strong>Formal Trousers:</strong> Use Sleek Black Side for meetings</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-brand-gold text-sm"></i>
+                            <span><strong>Casual Denim Jeans:</strong> Flip to Rich Tan Side for weekend hangouts</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button id="flipBeltBtn" class="gold-btn w-full py-4 rounded-xl font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-rotate-right text-base"></i> Twist Buckle 180° Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-brand-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full glass-card border border-brand-gold/30">
+                Crafted For Royalty
+            </span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-3">
+                Signature <span class="gold-gradient-text">Leather Collection</span>
+            </h2>
+            <p class="text-gray-400 text-sm sm:text-base mt-2">
+                Hand-inspected, edge-stitched, and backed by our zero-crack replacement guarantee.
+            </p>
+        </div>
+
+        <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cards are generated from the PRODUCTS array at the bottom of this file. -->
+        </div>
+    </section>
+
+    <section class="py-16 px-4 max-w-5xl mx-auto">
+        <div class="glass-card p-8 rounded-3xl border border-brand-gold/30 tilt-3d reveal-3d">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="text-brand-gold text-xs font-bold uppercase tracking-widest">Innovation Spotlight</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mt-2">How Auto-Lock Precision Works</h3>
+                    <p class="text-gray-300 text-xs sm:text-sm mt-3 leading-relaxed">
+                        Traditional belts stretch and tear at the hole. Our Ratchet Auto-Lock system uses a concealed 32-notch track sewn directly into the underside of the strap.
+                    </p>
+                    
+                    <div class="mt-6 space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-gray-300 mb-1">
+                                <span>Adjust Position (Test Track)</span>
+                                <span id="ratchetPosText" class="text-brand-gold">Notch #16 (Perfect Fit)</span>
+                            </div>
+                            <input type="range" id="ratchetSlider" min="1" max="32" value="16" class="w-full accent-brand-gold bg-gray-800 rounded-lg h-2 cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-black/80 p-6 rounded-2xl border border-gray-800 flex flex-col items-center justify-center text-center">
+                    <div class="w-full h-16 bg-zinc-900 rounded-xl border border-zinc-700 relative overflow-hidden flex items-center px-4">
+                        <div id="ratchetTrackVisual" class="w-full h-3 bg-zinc-950 rounded flex justify-between px-2 items-center border border-zinc-800">
+                            <!-- JS will generate teeth -->
+                        </div>
+                        <div id="ratchetBucklePin" class="absolute w-8 h-10 bg-gradient-to-r from-amber-300 to-amber-600 rounded shadow-md border border-white transition-all duration-150" style="left: 50%;"></div>
+                    </div>
+                    <p class="text-[11px] text-gray-400 mt-4"><i class="fa-solid fa-volume-high text-brand-gold mr-1"></i> Drag slider to hear micro-ratchet audio clicks</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="authenticity" class="py-20 px-4 bg-black/60 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full glass-card border border-brand-gold/30">
+                    No Rexine • 100% Top-Grain
+                </span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-3">
+                    The Authenticity <span class="gold-gradient-text">Guarantee</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base mt-2">
+                    How to verify genuine Pakistani hide vs cheap synthetic Rexine.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- TEST 1 -->
+                <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-brand-gold/40 transition-all tilt-3d reveal-3d">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-4">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">1. The Water Drop Test</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Real top-grain leather absorbs a tiny drop of water within 30-60 seconds due to natural pores. Synthetic Rexine causes water to bead up and roll off completely.
+                    </p>
+                </div>
+
+                <!-- TEST 2 -->
+                <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-brand-gold/40 transition-all tilt-3d reveal-3d">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-4">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">2. Flame Resistance</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Genuine cowhide naturally resists brief exposure to a lighter flame without melting or producing chemical plastic smoke. Fake leather melts instantly.
+                    </p>
+                </div>
+
+                <!-- TEST 3 -->
+                <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-brand-gold/40 transition-all tilt-3d reveal-3d">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-4">
+                        <i class="fa-solid fa-hand-back-fist"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">3. Scratch & Healing</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Fingernail scratches on our rich leather can be easily buffed out using warm thumb pressure due to natural oils embedded inside cow leather.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="reviews" class="py-20 px-4 max-w-6xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-brand-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full glass-card border border-brand-gold/30">
+                What customers say
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-3">
+                Trusted Across <span class="gold-gradient-text">Pakistan</span>
+            </h2> -->
+            <!-- These three cards are PLACEHOLDERS so the section isn't empty. Replace them with
+                 real customer quotes in js/REVIEWS below (bottom of file) once you have some —
+                 don't leave invented reviews live once real ones exist. -->
+     <!--   </div>
+
+        <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    </section> -->
+
+    <section id="order" class="py-20 px-4 bg-gradient-to-b from-brand-bg via-brand-surface to-brand-bg relative">
+        <div class="max-w-4xl mx-auto glass-card p-6 sm:p-10 rounded-3xl border border-brand-gold/40 shadow-2xl">
+            
+            <div class="text-center mb-10">
+                <span class="text-brand-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-black border border-brand-gold/30">
+                    Express Order Form
+                </span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-3">
+                    Complete Your Order (Cash On Delivery)
+                </h2>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1">
+                    Fill the form below or order directly via WhatsApp in 1-Click.
+                </p>
+            </div>
+
+            <form id="orderForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                <!-- Product Selection -->
+                <div>
+                    <label class="block text-xs font-bold text-brand-gold uppercase tracking-wider mb-2">Select Your Product</label>
+                    <select id="productSelect" onchange="updatePriceSummary()" class="w-full bg-black/80 border border-gray-700 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-brand-gold text-sm">
+                        <!-- Options are generated from the PRODUCTS array at the bottom of this file. -->
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Customer Name -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Full Name *</label>
+                        <input type="text" id="custName" required placeholder="e.g. Muhammad Ali" class="w-full bg-black/80 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold text-sm">
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">WhatsApp / Phone Number *</label>
+                        <input type="tel" id="custPhone" required placeholder="0300 1234567" class="w-full bg-black/80 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold text-sm">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- City -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">City *</label>
+                        <input type="text" id="custCity" required placeholder="Karachi, Lahore, Islamabad, etc." class="w-full bg-black/80 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold text-sm">
+                    </div>
+
+                    <!-- Belt Waist Size -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Waist Size (Inches)</label>
+                        <select id="custSize" class="w-full bg-black/80 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold text-sm">
+                            <option value="Medium (30 - 34 in)">Medium (30 - 34 inches)</option>
+                            <option value="Large (36 - 40 in)">Large (36 - 40 inches)</option>
+                            <option value="XL (42 - 46 in)">XL (42 - 46 inches)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Complete Address -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1">Complete House Address *</label>
+                    <textarea id="custAddress" required rows="2" placeholder="House/Flat No., Street, Sector/Area..." class="w-full bg-black/80 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold text-sm"></textarea>
+                </div>
+
+                <!-- Price Summary Box -->
+                <div class="bg-black/90 p-4 rounded-xl border border-gray-800 space-y-2 text-xs">
+                    <div class="flex justify-between text-gray-400">
+                        <span>Product Price:</span>
+                        <span id="summaryProductPrice" class="text-white font-bold">Rs. 2,499</span>
+                    </div>
+                    <div class="flex justify-between text-gray-400">
+                        <span>Courier Shipping Charges:</span>
+                        <span class="text-green-400 font-bold">FREE (Promotional)</span>
+                    </div>
+                    <div class="flex justify-between text-gray-400">
+                        <span>Payment Method:</span>
+                        <span class="text-brand-gold font-bold">Cash On Delivery (COD)</span>
+                    </div>
+                    <div class="border-t border-gray-800 pt-2 flex justify-between text-sm font-bold text-white">
+                        <span>Total Payable Amount:</span>
+                        <span id="summaryTotalPrice" class="text-brand-gold text-base">Rs. 2,499</span>
+                    </div>
+                </div>
+
+                <!-- Submission Action Buttons -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <button type="submit" class="gold-btn py-4 rounded-xl font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-truck-fast"></i> Place COD Order
+                    </button>
+                    
+                    <button type="button" onclick="orderViaWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shadow-lg">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Order via WhatsApp
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-gray-900 py-12 px-4 text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <span class="font-serif text-xl font-bold text-white tracking-widest">CHARM<span class="text-brand-gold">LEATHER</span></span>
+                <p class="text-gray-400 leading-relaxed">
+                    Pakistan's premier brand for 100% genuine leather reversible and auto-lock belts.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-wider mb-3">Quick Navigation</h4>
+                <ul class="space-y-2">
+                    <li><a href="#simulator" class="hover:text-brand-gold">3D Simulator</a></li>
+                    <li><a href="#products" class="hover:text-brand-gold">Reversible Belt</a></li>
+                    <li><a href="#products" class="hover:text-brand-gold">Auto-Lock Belt</a></li>
+                    <li><a href="#authenticity" class="hover:text-brand-gold">Real Leather Test</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-wider mb-3">Customer Support</h4>
+                <ul class="space-y-2">
+                    <li><i class="fa-solid fa-location-dot text-brand-gold mr-2"></i>Charm Leather / Karachi, Pakistan</li>
+                    <li><i class="fa-brands fa-whatsapp text-brand-gold mr-2"></i>0345-8340235</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-wider mb-3">Guarantees</h4>
+                <p class="text-gray-400 mb-2">100% Open Parcel Allowed Before Payment in Selected Cities.</p>
+                <div class="flex space-x-2 text-lg text-gray-400">
+                    <i class="fa-solid fa-shield-cat text-brand-gold"></i>
+                    <i class="fa-solid fa-box-open text-brand-gold"></i>
+                    <i class="fa-solid fa-handshake-angle text-brand-gold"></i>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-gray-900 mt-8 pt-6 text-center">
+            <p>&copy; 2026 CharmLeather. All Rights Reserved. Built for GitHub Pages Hosting.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Floating Mobile Order Bar -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 glass-card border-t border-brand-gold/30 p-3 z-40 flex items-center justify-between gap-3">
+        <div>
+            <p class="text-[10px] text-gray-400">Reversible Dual-Tone</p>
+            <p class="text-sm font-bold text-brand-gold js-hero-price">Rs. 2,499</p>
+        </div>
+        <a href="#order" class="gold-btn px-6 py-2.5 rounded-xl font-bold text-xs uppercase flex items-center gap-1">
+            <i class="fa-solid fa-bolt"></i> Order COD
+        </a>
+    </div>
+
+    <!-- Order Success Modal Overlay -->
+    <div id="successModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card max-w-md w-full p-8 rounded-3xl text-center border border-brand-gold relative">
+            <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 border border-emerald-500/40">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-white mb-2">Order Confirmed!</h3>
+            <p class="text-gray-300 text-xs leading-relaxed mb-6">
+                Thank you for choosing **CharmLeather**. Your order has been registered. Our delivery team will call you shortly for dispatch confirmation.
+            </p>
+            <button onclick="closeModal()" class="gold-btn w-full py-3 rounded-xl font-bold text-xs uppercase">
+                Back To Store
+            </button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
