@@ -1,50 +1,39 @@
-# CharmLeather Landing Page
+# Charm Leather: landing page
 
-## Apni product photos add karna
+Genuine leather belts aur wallets. Static page, koi build ya framework nahi. Seedha GitHub Pages par chalta hai.
 
-`js/script.js` file kholo (Notepad ya koi bhi text/code editor se) — sabse upar likha hai:
+## Folder
+- `index.html`: poora page (slider, hero, 8 products, belt flip, leather guide, order form)
+- `css/style.css`: design
+- `js/main.js`: slider, belt flip, card tilt
+- `js/order.js`: order form (Google Form/Sheet + WhatsApp)
+- `assets/`: logo aur photos
 
-```
-const PRODUCTS = [
-    {
-        id: "reversible",
-        name: "Reversible Dual-Tone Belt",
-        ...
-        photo: null
-    },
-    ...
-];
-```
+## Photos lagana
+`assets/` mein ye naam rakhein (jpg):
+- `slide1.jpg`, `slide2.jpg`, `slide3.jpg`: top slider
+- `p1.jpg` se `p8.jpg`: 8 products
+- `belt-black.jpg`, `belt-tan.jpg`: belt flip ki 2 sides
 
-Apni photo add karne ke 2 steps:
+Naam, detail aur price `index.html` mein `<article class="card">` ke andar badlein (`Rs. ____` ki jagah).
 
-1. Is HTML file ke **sath wale folder** mein ek naya folder banao naam `images`, aur apni product photo us mein daal do (e.g. `images/reversible-belt.jpg`)
-2. `js/script.js` mein us product ki `photo: null` line ko badal kar likho:
-   ```
-   photo: "images/reversible-belt.jpg"
-   ```
+## Order form ko Google Sheet se jodna
+`js/order.js` ke upar `ENTRY` mein har `entry.XXXX` ki jagah Google Form ke asli IDs likhein.
+1. Google Form mein sawal rakhein: Your Name, Contact Number, Complete Address, City, Belt ka colour, Waist Size, aur ek naya "Product" (Belt/Wallet).
+2. "Waist Size" ko required na rakhein (wallet ke liye size nahi hota).
+3. Form ke 3 dots (⋮) > **Get pre-filled link** > sab sawalon mein test jawab > **Get link**.
+4. Link mein `entry.123456=test` jaise hisse hon ge. Har sawal ka number `ENTRY` mein likh dein.
 
-Bas — save karo, page refresh karo, aapki real photo dikhne lag jayegi (icon illustration ki jagah). Design, animation, kisi aur cheez ko chhedne ki zaroorat nahi.
+Jab tak IDs nahi bhare, order sirf WhatsApp par jata hai. Ek limit: browser Google ka jawab nahi dekh sakta, to agar Form kisi wajah se order reject kare to page ko pata nahi chalta. WhatsApp message phir bhi ja chuka hota hai.
 
-Yehi tareeqa teeno products (Reversible Belt, Auto-Lock Belt, Gift Combo) ke liye kaam karega — har ek ka apna `photo:` field hai.
+## WhatsApp number
+`js/order.js` mein `WA_NUMBER = '923458340235'` (country code ke saath, bina + aur bina 0 ke). `index.html` mein bhi `wa.me/923458340235` ek jagah hai.
 
-**Naya product add karna ho to**: `PRODUCTS` array mein `{ ... }` ka ek aur block copy-paste kar ke apni details daal do — website automatically naya card bana degi.
+## Delivery rule
+Karachi: COD free. Baqi shehar: Rs. 300 aur advance payment (PostEx). Text `js/order.js` ke `note()` mein hai.
 
----
-
-## GitHub par publish karna
-
-1. [github.com](https://github.com) par account banao (agar nahi hai)
-2. "+" > "New repository" > naam do (e.g. `charmleather-website`) > Public > Create
-3. Repository page par "uploading an existing file" click karo
-4. Is poore folder ki sab files ek sath drag & drop karo — `index.html`, `css` folder, `js` folder, aur `images` folder (jo aapne apni photos ke sath banaya) — "Commit changes" dabao
-5. Settings > Pages > Branch: `main`, folder `/ (root)` > Save
-6. 1-2 minute baad live link mil jayegi: `https://<username>.github.io/<repository-naam>/`
-
-## WhatsApp number badalna
-
-`js/script.js` file mein sabse upar:
-```
-const WHATSAPP_NUMBER = "923458340235";
-```
-Yahan apna number country code ke sath, bina + aur bina leading 0 ke likho.
+## GitHub Pages par chalana
+1. Repo mein purani files delete karein (khaas kar `js/script.js`, `js/tailwind-config.js`, purana `images/` folder).
+2. Is folder ki sab files upload karein (`index.html`, `css`, `js`, `assets`, `README.md`).
+3. Settings > Pages > Branch: `main`, folder `/ (root)` > Save.
+4. 1-2 minute baad link: `https://<username>.github.io/<repo>/`

@@ -1,127 +1,135 @@
-        body {
-            background-color: #0B0B0D;
-            color: #E2E8F0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #FFF0B9 0%, #D4AF37 50%, #996515 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .gold-btn {
-            background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
-            color: #000;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
-        }
-
-        .gold-btn:hover {
-            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 100%);
-            box-shadow: 0 6px 28px rgba(212, 175, 55, 0.45);
-            transform: translateY(-2px);
-        }
-
-        .glass-card {
-            background: rgba(22, 22, 26, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-        }
-
-        .glass-card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .glass-card-hover:hover {
-            border-color: rgba(212, 175, 55, 0.5);
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 20px rgba(212, 175, 55, 0.15);
-        }
-
-        /* 3D Belt Simulator Styles */
-        .perspective-1000 {
-            perspective: 1000px;
-        }
-        
-        .belt-flip-container {
-            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            transform-style: preserve-3d;
-        }
-
-        .belt-flipped {
-            transform: rotateY(180deg);
-        }
-
-        .belt-face {
-            backface-visibility: hidden;
-        }
-
-        .belt-back {
-            transform: rotateY(180deg);
-            backface-visibility: hidden;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0B0B0D;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #25252D;
-            border-radius: 4px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #D4AF37;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.001ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.001ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-/* =========================================================================
-   3D ANIMATION LAYER
-   - .tilt-3d   : card leans toward the cursor (mouse) — hero card, product
-                  cards, review cards, authenticity cards.
-   - .reveal-3d : card rotates in from a slight angle as it scrolls into
-                  view (added by js/script.js via IntersectionObserver).
-   Both are skipped automatically for people with "reduce motion" turned on
-   (see the prefers-reduced-motion block above).
-   ========================================================================= */
-.tilt-3d {
-    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
-    transform-style: preserve-3d;
-    will-change: transform;
+:root{
+  --ink:#140d08;          /* dark leather */
+  --hide:#2a1a10;         /* brown */
+  --gold:#d4a24c;
+  --gold-soft:#f0d79a;
+  --paper:#f4ead8;
+  --f-display:"Cormorant Garamond",Georgia,serif;
+  --f-body:"Jost",system-ui,sans-serif;
 }
-.tilt-3d:hover {
-    box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.25);
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{background:var(--ink);color:var(--paper);font:400 1rem/1.65 var(--f-body)}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* header */
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+  padding:.6rem 1.25rem;background:rgba(20,13,8,.92);backdrop-filter:blur(8px);border-bottom:1px solid #3a2616}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;font:600 1.35rem var(--f-display);letter-spacing:.04em;color:var(--gold-soft)}
+.brand img{border-radius:50%}
+.top nav{display:flex;gap:1.25rem;align-items:center}
+.top nav a{text-decoration:none;font-size:.95rem}
+.top nav a:hover{color:var(--gold)}
+.top .wa{padding:.35rem .9rem;border:1px solid var(--gold);border-radius:99px;color:var(--gold)}
+
+/* slider */
+.slider{position:relative;overflow:hidden;background:#000}
+.slides{position:relative;aspect-ratio:16/7;min-height:240px}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.slide.is-active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 6s ease-out}
+.slide.is-active img{transform:scale(1)}
+.slide figcaption{position:absolute;left:0;right:0;bottom:0;padding:2.5rem 1.5rem 1.5rem;
+  font:600 clamp(1.4rem,3.5vw,2.4rem) var(--f-display);color:var(--gold-soft);
+  background:linear-gradient(transparent,rgba(0,0,0,.75))}
+.arrow{position:absolute;top:50%;translate:0 -50%;width:2.6rem;height:2.6rem;border:1px solid var(--gold);border-radius:50%;
+  background:rgba(20,13,8,.6);color:var(--gold);font-size:1.6rem;line-height:1;cursor:pointer}
+.arrow:hover{background:var(--gold);color:var(--ink)}
+.prev{left:1rem}.next{right:1rem}
+.dots{position:absolute;bottom:.8rem;right:1.25rem;display:flex;gap:.5rem}
+.dots button{width:.7rem;height:.7rem;border-radius:50%;border:1px solid var(--gold);background:none;cursor:pointer;padding:0}
+.dots button[aria-selected=true]{background:var(--gold)}
+
+/* hero: the one memorable moment is the leather stitch drawing itself, then the headline lines settling in */
+.hero{max-width:60rem;margin:0 auto;padding:4.5rem 1.25rem 3.5rem;text-align:center}
+.stitch{width:min(26rem,80%);height:12px;margin:0 auto 2rem;overflow:visible}
+.stitch line{stroke:var(--gold);stroke-width:2;stroke-dasharray:14 10;stroke-dashoffset:600;animation:sew 2.4s ease-out forwards}
+@keyframes sew{to{stroke-dashoffset:0}}
+.hero h1{font:600 clamp(2.2rem,6vw,4.2rem)/1.1 var(--f-display);color:var(--gold-soft)}
+.hero h1 span{display:block;opacity:0;translate:0 14px;animation:settle .8s ease-out forwards}
+.hero h1 span:nth-child(1){animation-delay:.5s}
+.hero h1 span:nth-child(2){animation-delay:1s}
+.hero h1 span:nth-child(3){animation-delay:1.5s}
+@keyframes settle{to{opacity:1;translate:0 0}}
+.lead{max-width:38rem;margin:1.5rem auto 0;color:#d9cdb6}
+.cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.btn{padding:.8rem 1.8rem;border-radius:3px;text-decoration:none;font-weight:500;border:1px solid var(--gold);transition:background .2s,color .2s}
+.btn.gold{background:var(--gold);color:var(--ink)}
+.btn.gold:hover{background:var(--gold-soft)}
+.btn.ghost{color:var(--gold)}
+.btn.ghost:hover{background:rgba(212,162,76,.12)}
+.facts{list-style:none;padding:0;margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:.6rem 1.8rem;justify-content:center;color:#bfae8e;font-size:.92rem}
+
+@media (max-width:640px){
+  .top nav a:not(.wa){display:none}
+  .slides{aspect-ratio:4/3}
+  .arrow{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .hero h1 span{opacity:1;translate:0 0}
+  .stitch line{stroke-dashoffset:0}
 }
 
-.reveal-3d {
-    opacity: 0;
-    transform: perspective(1000px) rotateX(-10deg) translateY(36px) scale(0.96);
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.reveal-3d.in-view {
-    opacity: 1;
-    transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
-}
+/* products */
+.products{max-width:72rem;margin:0 auto;padding:3rem 1.25rem 4rem}
+.products h2{font:600 clamp(1.8rem,4vw,2.6rem) var(--f-display);color:var(--gold-soft);text-align:center}
+.sub{text-align:center;color:#bfae8e;margin:.4rem 0 2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:1.4rem}
+.card{background:var(--hide);border:1px solid #3a2616;border-radius:4px;overflow:hidden;transition:border-color .25s,translate .25s}
+.card:hover{border-color:var(--gold)}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;background:#1c120b}
+.info{padding:1rem 1.1rem 1.2rem}
+.info h3{font:600 1.25rem/1.2 var(--f-display);color:var(--gold-soft)}
+.info p{font-size:.9rem;color:#cbbd9f;margin:.3rem 0 .9rem}
+.row{display:flex;align-items:center;justify-content:space-between}
+.price{color:var(--gold);font-weight:500}
+.row a{padding:.35rem 1rem;border:1px solid var(--gold);border-radius:3px;color:var(--gold);text-decoration:none;font-size:.9rem}
+.row a:hover{background:var(--gold);color:var(--ink)}
 
-/* stagger children of a 3D-revealed grid so cards don't all pop at once */
-.reveal-3d:nth-child(2) { transition-delay: 0.08s; }
-.reveal-3d:nth-child(3) { transition-delay: 0.16s; }
+/* order form */
+.order{max-width:34rem;margin:0 auto;padding:1rem 1.25rem 5rem}
+.order h2{font:600 clamp(1.8rem,4vw,2.6rem) var(--f-display);color:var(--gold-soft);text-align:center}
+#orderForm{display:grid;gap:1rem}
+#orderForm label{display:grid;gap:.3rem;font-size:.92rem;color:#cbbd9f}
+#orderForm input,#orderForm select{padding:.7rem .8rem;background:#1c120b;border:1px solid #4a3220;border-radius:3px;color:var(--paper);font:inherit}
+#orderForm input:focus,#orderForm select:focus{border-color:var(--gold)}
+#orderForm input:user-invalid{border-color:#c0603c}
+.delivery{padding:.8rem 1rem;border-left:3px solid var(--gold);background:rgba(212,162,76,.08);font-size:.92rem}
+.err{color:#e8896a;font-size:.9rem}
+#orderForm .btn{cursor:pointer;font:inherit;font-weight:500}
+.done{text-align:center;padding:2rem 1rem;border:1px solid var(--gold);border-radius:4px}
+.done h3{font:600 1.6rem var(--f-display);color:var(--gold-soft);margin-bottom:.5rem}
+.done .btn{display:inline-block;margin-top:1rem}
 
-/* gives depth to the page as a whole while scrolling */
-.perspective-scene {
-    perspective: 1400px;
-}
+/* broken/missing product photo: keep the card tidy */
+.card img.noimg{visibility:hidden}
+
+/* flip belt */
+.flip{background:#1b110b;border-block:1px solid #3a2616;padding:4rem 1.25rem}
+.flip-wrap{max-width:62rem;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:2.5rem;align-items:center}
+.flip-stage{perspective:1100px}
+.belt-card{display:block;position:relative;width:100%;aspect-ratio:4/3;padding:0;border:0;background:none;cursor:pointer;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.7,.2,1)}
+.belt-card.flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:6px;overflow:hidden;backface-visibility:hidden;border:1px solid var(--gold)}
+.face img{width:100%;height:100%;object-fit:cover}
+.face.back{transform:rotateY(180deg)}
+.flip-text h2{font:600 clamp(1.8rem,4vw,2.6rem) var(--f-display);color:var(--gold-soft);margin:.5rem 0}
+.flip-text p{color:#cbbd9f}
+.flip-text .btn{margin-top:1.2rem;cursor:pointer;font:inherit;font-weight:500}
+.badge{display:inline-block;padding:.2rem .8rem;border:1px solid var(--gold);border-radius:99px;color:var(--gold)!important;font-size:.85rem}
+
+/* guide */
+.genuine{max-width:64rem;margin:0 auto;padding:4rem 1.25rem}
+.genuine h2{font:600 clamp(1.8rem,4vw,2.6rem) var(--f-display);color:var(--gold-soft);text-align:center}
+.tests{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.2rem}
+.tests article{padding:1.3rem;border:1px solid #3a2616;background:var(--hide);border-radius:4px}
+.tests h3{font:600 1.25rem var(--f-display);color:var(--gold-soft);margin-bottom:.4rem}
+.tests p{font-size:.92rem;color:#cbbd9f}
+
+/* card tilt (set by main.js) */
+.card{transition:transform .15s ease-out,border-color .25s}
+@media (max-width:760px){.flip-wrap{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.belt-card{transition:none}}
