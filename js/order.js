@@ -25,7 +25,10 @@ const ENTRY = {
     sizeRow.hidden = f.product.value !== 'Belt';
     delivery.textContent = note();
   };
+  // change + pageshow: autofill aur Back button se wapas aane par bhi note update ho
   f.addEventListener('input', sync);
+  f.addEventListener('change', sync);
+  addEventListener('pageshow', sync);
   sync();
 
   // Card ke "Order" button se product pehle se select ho jaye.
