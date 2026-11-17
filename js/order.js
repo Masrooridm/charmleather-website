@@ -12,17 +12,29 @@ const ENTRY = {
   const delivery = document.getElementById('delivery');
   const err = document.getElementById('err');
   const sizeRow = document.getElementById('sizeRow');
+  // Product list comes from the cards: a card shows only once its price is filled in (no 'Rs. ____').
+  const typeOf = {};
+  const items = [];
+  document.querySelectorAll('.card').forEach(card => {
+    const price = card.querySelector('.price').textContent.trim();
+    if (price.includes('____')) { card.hidden = true; return; }
+    const name = card.querySelector('h3').textContent.trim();
+    typeOf[name] = card.querySelector('[data-type]').dataset.type;
+    items.push({ name, price });
+  });
+  f.elements.product.innerHTML = items.map(i => `<option value="${i.name.replace(/"/g, '&quot;')}">${i.name} (${i.price})</option>`).join('');
+  const priceOf = n => (items.find(i => i.name === n) || {}).price || '';
   const isKarachi = c => /karachi|krachi|کراچی/i.test(c); // 'Karachi, Pakistan' bhi Karachi
 
   const note = () => {
-    const c = f.city.value.trim();
+    const c = f.elements.city.value.trim();
     if (!c) return 'Shehar likhein, delivery ka tareeqa yahan nazar aayega.';
     return isKarachi(c)
       ? 'Karachi: Cash on Delivery bilkul free. Rider se 2-3 working days mein.'
       : 'Baqi shehar: delivery charges Rs. 300 aur advance payment. PostEx se 2-3 working days mein.';
   };
   const sync = () => {
-    sizeRow.hidden = f.product.value !== 'Belt';
+    sizeRow.hidden = typeOf[f.elements.product.value] === 'Wallet';
     delivery.textContent = note();
   };
   // change + pageshow: autofill aur Back button se wapas aane par bhi note update ho
@@ -31,9 +43,9 @@ const ENTRY = {
   addEventListener('pageshow', sync);
   sync();
 
-  // Card ke "Order" button se product pehle se select ho jaye.
+  // Card ke "Order" button se wahi product select ho jaye.
   document.querySelectorAll('[data-type]').forEach(a =>
-    a.addEventListener('click', () => { f.product.value = a.dataset.type; sync(); }));
+    a.addEventListener('click', () => { f.elements.product.value = a.closest('.card').querySelector('h3').textContent.trim(); sync(); }));
 
   f.addEventListener('submit', async e => {
     e.preventDefault();
@@ -43,7 +55,8 @@ const ENTRY = {
     d.phone = d.phone.replace(/[\s-]/g, '').replace(/^(0092|92|0)/, '+92');
     if (!d.phone.startsWith('+')) d.phone = '+92' + d.phone;
     if (!/^\+923\d{9}$/.test(d.phone)) { err.textContent = 'Number +92 3XX XXXXXXX ki tarah likhein (mas\'lan +923458340235).'; err.hidden = false; return; }
-    const belt = d.product === 'Belt';
+    const belt = typeOf[d.product] !== 'Wallet';
+    f.querySelector('[type=submit]').disabled = true; // double-click se do order na jayein
     if (!belt) d.size = 'N/A';
     const where = isKarachi(d.city) ? 'COD (Karachi, free delivery)' : 'Advance payment + Rs. 300 delivery';
 
@@ -55,7 +68,7 @@ const ENTRY = {
     }
 
     const msg = `Assalam o Alaikum, Charm Leather order:\n` +
-      `Product: ${d.product}\nColour: ${d.colour}\n` + (belt ? `Waist size: ${d.size}\n` : '') +
+      `Product: ${d.product} ${priceOf(d.product)}\nColour: ${d.colour}\n` + (belt ? `Waist size: ${d.size}\n` : '') +
       `Naam: ${d.name}\nNumber: ${d.phone}\nAddress: ${d.address}\nShehar: ${d.city}\nDelivery: ${where}`;
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     document.getElementById('waLink').href = url;
