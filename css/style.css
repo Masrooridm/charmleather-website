@@ -80,7 +80,7 @@ a{color:inherit}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:1.4rem}
 .card{background:var(--hide);border:1px solid #3a2616;border-radius:4px;overflow:hidden;transition:border-color .25s,translate .25s}
 .card:hover{border-color:var(--gold)}
-.card img{width:100%;aspect-ratio:1;object-fit:cover;background:#1c120b}
+.card img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;background:#1c120b}
 .info{padding:1rem 1.1rem 1.2rem}
 .info h3{font:600 1.25rem/1.2 var(--f-display);color:var(--gold-soft)}
 .info p{font-size:.9rem;color:#cbbd9f;margin:.3rem 0 .9rem}
