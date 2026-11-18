@@ -44,7 +44,7 @@ document.querySelectorAll('.card img').forEach(i => {
   const belt = document.getElementById('beltFlip'), badge = document.getElementById('flipBadge');
   const flip = () => {
     const on = belt.classList.toggle('flipped');
-    badge.textContent = on ? 'Abhi: Tan side' : 'Abhi: Black side';
+    badge.textContent = on ? 'Showing: tan side' : 'Showing: black side';
   };
   belt.addEventListener('click', flip);
   document.getElementById('flipBtn').addEventListener('click', flip);
