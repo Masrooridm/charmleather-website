@@ -84,8 +84,8 @@ a{color:inherit}
 .info{padding:1rem 1.1rem 1.2rem}
 .info h3{font:600 1.25rem/1.2 var(--f-display);color:var(--gold-soft)}
 .info p{font-size:.9rem;color:#cbbd9f;margin:.3rem 0 .9rem}
-.row{display:flex;align-items:center;justify-content:space-between}
-.price{color:var(--gold);font-weight:500}
+.row{display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+.price{color:var(--gold);font-weight:500;font-size:.95rem}
 .row a{white-space:nowrap;padding:.35rem 1rem;border:1px solid var(--gold);border-radius:3px;color:var(--gold);text-decoration:none;font-size:.9rem}
 .row a:hover{background:var(--gold);color:var(--ink)}
 
