@@ -12,6 +12,7 @@ const ENTRY = {
   const delivery = document.getElementById('delivery');
   const err = document.getElementById('err');
   const sizeRow = document.getElementById('sizeRow');
+  const colourRow = document.getElementById('colourRow');
   // Product list comes from the cards: a card shows only once its price is filled in (no 'Rs. ____').
   const typeOf = {};
   const items = [];
@@ -19,6 +20,12 @@ const ENTRY = {
     const price = card.querySelector('.price').textContent.trim();
     if (price.includes('____')) { card.hidden = true; return; }
     const name = card.querySelector('h3').textContent.trim();
+    if (card.hasAttribute('data-ask')) { // no fixed price yet: the button opens WhatsApp instead of the form
+      const a = card.querySelector('[data-type]');
+      a.removeAttribute('data-type'); a.textContent = 'Ask price'; a.target = '_blank'; a.rel = 'noopener';
+      a.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hello, I would like to know the price of the ' + name + '.')}`;
+      return;
+    }
     typeOf[name] = card.querySelector('[data-type]').dataset.type;
     items.push({ name, price });
   });
@@ -34,7 +41,9 @@ const ENTRY = {
       : 'Other cities: Rs. 300 delivery charge with advance payment. Delivered by PostEx in 2-3 working days.';
   };
   const sync = () => {
-    sizeRow.hidden = typeOf[f.elements.product.value] === 'Wallet';
+    const wallet = typeOf[f.elements.product.value] === 'Wallet';
+    sizeRow.hidden = colourRow.hidden = wallet;      // wallets have no size or colour choice
+    f.elements.size.disabled = f.elements.colour.disabled = wallet;
     delivery.textContent = note();
   };
   // change + pageshow: keep the note right after autofill or Back navigation
@@ -57,7 +66,7 @@ const ENTRY = {
     if (!/^\+923\d{9}$/.test(d.phone)) { err.textContent = 'Enter your number like +92 3XX XXXXXXX (for example +923458340235).'; err.hidden = false; return; }
     const belt = typeOf[d.product] !== 'Wallet';
     f.querySelector('[type=submit]').disabled = true; // stops a double click from sending two orders
-    if (!belt) d.size = 'N/A';
+    if (!belt) { d.size = 'N/A'; d.colour = 'N/A'; }
     const where = isKarachi(d.city) ? 'Cash on delivery (Karachi, free delivery)' : 'Advance payment + Rs. 300 delivery';
 
     const body = new URLSearchParams();
@@ -68,7 +77,7 @@ const ENTRY = {
     }
 
     const msg = `Hello, I would like to place an order with Charm Leather:\n` +
-      `Product: ${d.product} ${priceOf(d.product)}\nColour: ${d.colour}\n` + (belt ? `Waist size: ${d.size}\n` : '') +
+      `Product: ${d.product} ${priceOf(d.product)}\n` + (belt ? `Colour: ${d.colour}\nWaist size: ${d.size}\n` : '') +
       `Name: ${d.name}\nPhone: ${d.phone}\nAddress: ${d.address}\nCity: ${d.city}\nDelivery: ${where}`;
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     document.getElementById('waLink').href = url;

@@ -67,67 +67,51 @@
   <p class="sub">Every item is made from genuine leather.</p>
   <div class="grid">
     <article class="card">
-      <img src="assets/p1.jpg" alt="Crocodile auto-lock belt" loading="lazy" width="600" height="600">
+      <img src="assets/p1.jpg" alt="Crocodile auto-lock belt" loading="lazy" width="900" height="770">
       <div class="info">
         <h3>Crocodile Auto-Lock Belt</h3>
         <p>Genuine leather, auto-lock buckle, sizes 32 to 38</p>
         <div class="row"><strong class="price">Rs. 2,200</strong><a href="#order" data-type="Belt">Order</a></div>
       </div>
     </article>
-    <article class="card">
-      <img src="assets/p2.jpg" alt="Reversible dual-tone belt" loading="lazy" width="600" height="600">
+    <article class="card" data-ask>
+      <img src="assets/p2.jpg" alt="2-in-1 reversible leather belt" loading="lazy" width="900" height="770">
       <div class="info">
-        <h3>Reversible Dual-Tone Belt</h3>
-        <p>Black and tan: two looks in one belt</p>
+        <h3>2-in-1 Reversible Leather Belt</h3>
+        <p>Black and brown in one belt, with a quick-flip buckle</p>
+        <div class="row"><strong class="price">Price on request</strong><a href="#order" data-type="Belt">Order</a></div>
+      </div>
+    </article>
+    <article class="card" data-ask>
+      <img src="assets/p3.jpg" alt="Classic auto-lock belts" loading="lazy" width="900" height="770">
+      <div class="info">
+        <h3>Classic Auto-Lock Belts</h3>
+        <p>Six textures and buckle styles, black and brown</p>
+        <div class="row"><strong class="price">Price on request</strong><a href="#order" data-type="Belt">Order</a></div>
+      </div>
+    </article>
+    <article class="card" data-ask>
+      <img src="assets/p4.jpg" alt="Premium stitched leather belt, 40mm" loading="lazy" width="900" height="770">
+      <div class="info">
+        <h3>Premium Stitched Leather Belt (40mm)</h3>
+        <p>Genuine leather with double stitching and a silver-tone buckle</p>
+        <div class="row"><strong class="price">Price on request</strong><a href="#order" data-type="Belt">Order</a></div>
+      </div>
+    </article>
+    <article class="card">
+      <img src="assets/p5.jpg" alt="Premium leather card wallet" loading="lazy" width="900" height="770">
+      <div class="info">
+        <h3>Premium Card Wallet</h3>
+        <p>Slim genuine leather wallet with multiple card slots</p>
+        <div class="row"><strong class="price">Rs. 3,000</strong><a href="#order" data-type="Wallet">Order</a></div>
+      </div>
+    </article>
+    <article class="card">
+      <img src="assets/p6.jpg" alt="Braided leather belt, 35mm" loading="lazy" width="900" height="770">
+      <div class="info">
+        <h3>Braided Leather Belt (35mm)</h3>
+        <p>Braided leather design in black and dark brown</p>
         <div class="row"><strong class="price">Rs. ____</strong><a href="#order" data-type="Belt">Order</a></div>
-      </div>
-    </article>
-    <article class="card">
-      <img src="assets/p3.jpg" alt="Belt and wallet gift combo" loading="lazy" width="600" height="600">
-      <div class="info">
-        <h3>Belt + Wallet Gift Combo</h3>
-        <p>A belt and a matching wallet in one set</p>
-        <div class="row"><strong class="price">Rs. ____</strong><a href="#order" data-type="Belt">Order</a></div>
-      </div>
-    </article>
-    <article class="card">
-      <img src="assets/p4.jpg" alt="Belt 4 (name)" loading="lazy" width="600" height="600">
-      <div class="info">
-        <h3>Belt 4 (name)</h3>
-        <p>Details here</p>
-        <div class="row"><strong class="price">Rs. ____</strong><a href="#order" data-type="Belt">Order</a></div>
-      </div>
-    </article>
-    <article class="card">
-      <img src="assets/p5.jpg" alt="Wallet 1 (name)" loading="lazy" width="600" height="600">
-      <div class="info">
-        <h3>Wallet 1 (name)</h3>
-        <p>Details here</p>
-        <div class="row"><strong class="price">Rs. ____</strong><a href="#order" data-type="Wallet">Order</a></div>
-      </div>
-    </article>
-    <article class="card">
-      <img src="assets/p6.jpg" alt="Wallet 2 (name)" loading="lazy" width="600" height="600">
-      <div class="info">
-        <h3>Wallet 2 (name)</h3>
-        <p>Details here</p>
-        <div class="row"><strong class="price">Rs. ____</strong><a href="#order" data-type="Wallet">Order</a></div>
-      </div>
-    </article>
-    <article class="card">
-      <img src="assets/p7.jpg" alt="Wallet 3 (name)" loading="lazy" width="600" height="600">
-      <div class="info">
-        <h3>Wallet 3 (name)</h3>
-        <p>Details here</p>
-        <div class="row"><strong class="price">Rs. ____</strong><a href="#order" data-type="Wallet">Order</a></div>
-      </div>
-    </article>
-    <article class="card">
-      <img src="assets/p8.jpg" alt="Wallet 4 (name)" loading="lazy" width="600" height="600">
-      <div class="info">
-        <h3>Wallet 4 (name)</h3>
-        <p>Details here</p>
-        <div class="row"><strong class="price">Rs. ____</strong><a href="#order" data-type="Wallet">Order</a></div>
       </div>
     </article>
   </div>
@@ -166,7 +150,7 @@
     <label>Product
       <select name="product" required></select>
     </label>
-    <label>Colour
+    <label id="colourRow">Colour
       <select name="colour" required>
         <option>Brown</option>
         <option>Black</option>

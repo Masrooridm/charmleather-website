@@ -12,10 +12,10 @@ Genuine leather belts aur wallets. Static page, koi build ya framework nahi. See
 ## Photos lagana
 `assets/` mein ye naam rakhein (jpg):
 - `slide1.jpg`, `slide2.jpg`, `slide3.jpg`: top slider
-- `p1.jpg` se `p8.jpg`: 8 products
+- `p1.jpg` se `p6.jpg`: products (p6 abhi chhupa hai, Braided Leather Belt ki apni photo ka intezar)
 - `belt-black.jpg`, `belt-tan.jpg`: belt flip ki 2 sides
 
-Naam, detail aur price `index.html` mein `<article class="card">` ke andar badlein (`Rs. ____` ki jagah).
+Naam, detail aur price `index.html` mein `<article class="card">` ke andar badlein. Price `Rs. ____` ho to card chhupa rehta hai. `data-ask` wale card ("Price on request") ka button WhatsApp kholta hai, price tay hone par `data-ask` aur "Price on request" hata kar `Rs. 1,500` jaisa price likh dein, to wo order form mein bhi aa jata hai.
 
 ## Order form ko Google Sheet se jodna
 `js/order.js` ke upar `ENTRY` mein har `entry.XXXX` ki jagah Google Form ke asli IDs likhein.
